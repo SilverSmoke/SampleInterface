@@ -30,15 +30,16 @@ public class FramesController {
 
         enterFone.setTitle("Enter Phone");
         enterFone.setSize(500, 400);
+        enterFone.setResizable(false);
         enterFone.setLocationRelativeTo(null);
         enterFone.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        enterFone.dispose();
-        enterFone.setUndecorated(true);
+        /*enterFone.dispose();
+        enterFone.setUndecorated(true);*/
         enterFone.setVisible(true);
 
         /**confirmCode construction*/
         codeConfirmForm = new CodeConfirm(this);
-        codeConfirm.setContentPane(codeConfirmForm.getRootPanel());
+        /*codeConfirm.setContentPane(codeConfirmForm.getRootPanel());
 
         codeConfirm.setTitle("Confirm Code");
         codeConfirm.setSize(500, 400);
@@ -46,11 +47,11 @@ public class FramesController {
         codeConfirm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         codeConfirm.dispose();
         codeConfirm.setUndecorated(true);
-        codeConfirm.setVisible(false);
+        codeConfirm.setVisible(false);*/
 
         /**contactList construction*/
         contactListForm = new ContactsList(this);
-        contactList.setContentPane(contactListForm.getRootPanel());
+        /*contactList.setContentPane(contactListForm.getRootPanel());
 
         contactList.setTitle("Contact List");
         contactList.setSize(500, 400);
@@ -58,17 +59,31 @@ public class FramesController {
         contactList.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         contactList.dispose();
         contactList.setUndecorated(true);
-        contactList.setVisible(false);
+        contactList.setVisible(false);*/
     }
 
     public void jumpToCodeConfirm(String text) {
         codeConfirmForm.setPhone(text);
-        enterFone.setVisible(false);
-        codeConfirm.setVisible(true);
+        /*enterFone.getContentPane().removeAll();
+        enterFone.getContentPane().add(codeConfirmForm.getRootPanel());
+        enterFone.pack();*/
+        enterFone.setContentPane(codeConfirmForm.getRootPanel());
+        enterFone.pack();
+        enterFone.setTitle("Confirm code");
+        /*enterFone.setSize(500, 400);*/
+        /*enterFone.setVisible(false);
+        codeConfirm.setVisible(true);*/
     }
 
     public void jampToContactList() {
-        codeConfirm.setVisible(false);
-        contactList.setVisible(true);
+        /*enterFone.getContentPane().removeAll();
+        enterFone.getContentPane().add(contactListForm.getRootPanel());*/
+
+        enterFone.setContentPane(contactListForm.getRootPanel());
+        enterFone.pack();
+        enterFone.setTitle("Contact list");
+        /*enterFone.setSize(500, 400);*/
+        /*codeConfirm.setVisible(false);
+        contactList.setVisible(true);*/
     }
 }
