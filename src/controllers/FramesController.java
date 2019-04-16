@@ -24,6 +24,18 @@ public class FramesController {
     }
 
     private void constructionFrames() {
+        /**enterPhone construction*/
+        enterFoneForm = new EnterPhone(this);
+        enterFone.setContentPane(enterFoneForm.getRootPanel());
+
+        enterFone.setTitle("Enter Phone");
+        enterFone.setSize(500, 400);
+        enterFone.setLocationRelativeTo(null);
+        enterFone.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        enterFone.dispose();
+        enterFone.setUndecorated(true);
+        enterFone.setVisible(true);
+
         /**confirmCode construction*/
         codeConfirmForm = new CodeConfirm(this);
         codeConfirm.setContentPane(codeConfirmForm.getRootPanel());
@@ -44,21 +56,9 @@ public class FramesController {
         contactList.setSize(500, 400);
         contactList.setLocationRelativeTo(null);
         contactList.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        codeConfirm.dispose();
-        codeConfirm.setUndecorated(true);
-        codeConfirm.setVisible(false);
-
-        /**enterPhone construction*/
-        enterFoneForm = new EnterPhone(this);
-        enterFone.setContentPane(enterFoneForm.getRootPanel());
-
-        enterFone.setTitle("Enter Phone");
-        enterFone.setSize(500, 400);
-        enterFone.setLocationRelativeTo(null);
-        enterFone.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        codeConfirm.dispose();
-        codeConfirm.setUndecorated(true);
-        codeConfirm.setVisible(true);
+        contactList.dispose();
+        contactList.setUndecorated(true);
+        contactList.setVisible(false);
     }
 
     public void jumpToCodeConfirm(String text) {
