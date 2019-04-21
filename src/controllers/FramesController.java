@@ -9,30 +9,32 @@ import javax.swing.*;
 
 public class FramesController {
 
-    private JFrame enterFone;
+    private JFrame mainFrame;
 
     private CodeConfirm codeConfirmForm;
     private ContactsList contactListForm;
-    private EnterPhone enterFoneForm;
+    private EnterPhone enterPhone;
+
     private BridgeDAO bridgeDAO;
 
-    public FramesController(JFrame enterPhone, BridgeDAO bridgeDAO) {
-        this.enterFone = enterPhone;
+    public FramesController(JFrame jFrame, BridgeDAO bridgeDAO) {
+        this.mainFrame = jFrame;
         this.bridgeDAO =  bridgeDAO;
         constructionFrames();
     }
 
     private void constructionFrames() {
         /**enterPhone construction*/
-        enterFoneForm = new EnterPhone(this);
-        enterFone.setContentPane(enterFoneForm.getRootPanel());
+        enterPhone = new EnterPhone(this);
+        mainFrame.setContentPane(enterPhone.getRootPanel());
 
-        enterFone.setTitle("Enter Phone");
-        enterFone.setSize(500, 400);
-        enterFone.setResizable(false);
-        enterFone.setLocationRelativeTo(null);
-        enterFone.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        enterFone.setVisible(true);
+        mainFrame.setTitle("Enter Phone");
+        mainFrame.setSize(500, 400);
+        mainFrame.setResizable(false);
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        mainFrame.setVisible(true);
+        enterPhone.getTextField().requestFocus();
 
         /**confirmCode construction*/
         codeConfirmForm = new CodeConfirm(this);
@@ -42,18 +44,28 @@ public class FramesController {
     }
 
     public void jumpToCodeConfirm(String text) {
-        bridgeDAO.checkPhone(text);
-        codeConfirmForm.setPhone(text);
-        enterFone.getContentPane().removeAll();
-        enterFone.getContentPane().add(codeConfirmForm.getRootPanel());
-        enterFone.pack();
-        enterFone.setTitle("Confirm code");
+        if(!bridgeDAO.isPhone(text)){
+            enterPhone.clear();
+            JOptionPane.showMessageDialog(mainFrame, "Введите правильный номер!");
+            return;
+        }
+        codeConfirmForm.setPhoneNumber(text);
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(codeConfirmForm.getRootPanel());
+        mainFrame.pack();
+        mainFrame.setTitle("Confirm code");
+        codeConfirmForm.getTextField().requestFocus();
     }
 
-    public void jampToContactList() {
-        enterFone.getContentPane().removeAll();
-        enterFone.getContentPane().add(contactListForm.getRootPanel());
-        enterFone.pack();
-        enterFone.setTitle("Contact list");
+    public void jampToContactList(String code) {
+        if(!bridgeDAO.isAuthCode(code)){
+            codeConfirmForm.clear();
+            JOptionPane.showMessageDialog(mainFrame, "Неверный код! Повторите ввод!");
+            return;
+        }
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(contactListForm.getRootPanel());
+        mainFrame.pack();
+        mainFrame.setTitle("Contact list");
     }
 }

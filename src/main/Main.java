@@ -9,9 +9,9 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-        JFrame enterPhone = new JFrame();
+        JFrame frame = new JFrame();
         BridgeDAO bridgeDAO = new BridgeDAOImplement();
 
-        FramesController controller = new FramesController(enterPhone, bridgeDAO);
+        FramesController controller = new FramesController(frame, bridgeDAO);
     }
 }

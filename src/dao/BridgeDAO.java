@@ -2,5 +2,7 @@ package dao;
 
 public interface BridgeDAO {
 
-    boolean checkPhone(String numberPhone);
+    boolean isPhone(String numberPhone);
+
+    boolean isAuthCode(String code);
 }
