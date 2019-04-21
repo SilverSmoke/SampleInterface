@@ -1,16 +1,17 @@
 package main;
 
 import controllers.FramesController;
+import dao.BridgeDAO;
+import daoImplements.BridgeDAOImplement;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        JFrame codeConfirm = new JFrame();
-        JFrame contactList = new JFrame();
         JFrame enterPhone = new JFrame();
+        BridgeDAO bridgeDAO = new BridgeDAOImplement();
 
-        FramesController controller = new FramesController(codeConfirm, contactList, enterPhone);
+        FramesController controller = new FramesController(enterPhone, bridgeDAO);
     }
 }

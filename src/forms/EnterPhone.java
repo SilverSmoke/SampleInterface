@@ -12,7 +12,7 @@ public class EnterPhone {
 
     JPanel rootPanel;
     private JPanel topPane;
-    private JTextPane введитеКодСтраныИTextPane;
+    private JTextPane helpText;
     private JTextField textField1;
     private JButton nextButton;
 

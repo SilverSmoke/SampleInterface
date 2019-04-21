@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.BridgeDAO;
 import forms.CodeConfirm;
 import forms.ContactsList;
 import forms.EnterPhone;
@@ -8,18 +9,16 @@ import javax.swing.*;
 
 public class FramesController {
 
-    private JFrame codeConfirm;
-    private JFrame contactList;
     private JFrame enterFone;
 
     private CodeConfirm codeConfirmForm;
     private ContactsList contactListForm;
     private EnterPhone enterFoneForm;
+    private BridgeDAO bridgeDAO;
 
-    public FramesController(JFrame codeConfirm, JFrame contactList, JFrame enterPhone) {
-        this.codeConfirm = codeConfirm;
-        this.contactList = contactList;
+    public FramesController(JFrame enterPhone, BridgeDAO bridgeDAO) {
         this.enterFone = enterPhone;
+        this.bridgeDAO =  bridgeDAO;
         constructionFrames();
     }
 
@@ -33,57 +32,28 @@ public class FramesController {
         enterFone.setResizable(false);
         enterFone.setLocationRelativeTo(null);
         enterFone.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        /*enterFone.dispose();
-        enterFone.setUndecorated(true);*/
         enterFone.setVisible(true);
 
         /**confirmCode construction*/
         codeConfirmForm = new CodeConfirm(this);
-        /*codeConfirm.setContentPane(codeConfirmForm.getRootPanel());
-
-        codeConfirm.setTitle("Confirm Code");
-        codeConfirm.setSize(500, 400);
-        codeConfirm.setLocationRelativeTo(null);
-        codeConfirm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        codeConfirm.dispose();
-        codeConfirm.setUndecorated(true);
-        codeConfirm.setVisible(false);*/
 
         /**contactList construction*/
         contactListForm = new ContactsList(this);
-        /*contactList.setContentPane(contactListForm.getRootPanel());
-
-        contactList.setTitle("Contact List");
-        contactList.setSize(500, 400);
-        contactList.setLocationRelativeTo(null);
-        contactList.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        contactList.dispose();
-        contactList.setUndecorated(true);
-        contactList.setVisible(false);*/
     }
 
     public void jumpToCodeConfirm(String text) {
+        bridgeDAO.checkPhone(text);
         codeConfirmForm.setPhone(text);
-        /*enterFone.getContentPane().removeAll();
+        enterFone.getContentPane().removeAll();
         enterFone.getContentPane().add(codeConfirmForm.getRootPanel());
-        enterFone.pack();*/
-        enterFone.setContentPane(codeConfirmForm.getRootPanel());
         enterFone.pack();
         enterFone.setTitle("Confirm code");
-        /*enterFone.setSize(500, 400);*/
-        /*enterFone.setVisible(false);
-        codeConfirm.setVisible(true);*/
     }
 
     public void jampToContactList() {
-        /*enterFone.getContentPane().removeAll();
-        enterFone.getContentPane().add(contactListForm.getRootPanel());*/
-
-        enterFone.setContentPane(contactListForm.getRootPanel());
+        enterFone.getContentPane().removeAll();
+        enterFone.getContentPane().add(contactListForm.getRootPanel());
         enterFone.pack();
         enterFone.setTitle("Contact list");
-        /*enterFone.setSize(500, 400);*/
-        /*codeConfirm.setVisible(false);
-        contactList.setVisible(true);*/
     }
 }

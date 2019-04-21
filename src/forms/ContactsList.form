@@ -64,6 +64,7 @@
                       <component id="ad8af" class="javax.swing.JTextPane" binding="textOfMessageTextPane" default-binding="true">
                         <constraints border-constraint="Center"/>
                         <properties>
+                          <editable value="false"/>
                           <text value="Text of message"/>
                         </properties>
                       </component>
@@ -100,6 +101,7 @@
                       <component id="79844" class="javax.swing.JTextPane" default-binding="true">
                         <constraints border-constraint="Center"/>
                         <properties>
+                          <editable value="false"/>
                           <text value="Text of message"/>
                         </properties>
                       </component>
@@ -136,6 +138,7 @@
                       <component id="8cd82" class="javax.swing.JTextPane" default-binding="true">
                         <constraints border-constraint="Center"/>
                         <properties>
+                          <editable value="false"/>
                           <text value="Text of message"/>
                         </properties>
                       </component>
@@ -172,6 +175,7 @@
                       <component id="159b1" class="javax.swing.JTextPane" default-binding="true">
                         <constraints border-constraint="Center"/>
                         <properties>
+                          <editable value="false"/>
                           <text value="Text of message"/>
                         </properties>
                       </component>
